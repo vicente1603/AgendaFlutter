@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "106178498948",
+    "project_id": "agendaflutter-3133c",
+    "storage_bucket": "agendaflutter-3133c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:106178498948:android:f0df8675710c9c34820dd1",
+        "android_client_info": {
+          "package_name": "br.santiago.agenda_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "106178498948-i1najbmcm7lfde62omceevvgep1k17ip.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPktze2o7aFJiy7BSXA6SPfj3yKTxgh8A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "106178498948-i1najbmcm7lfde62omceevvgep1k17ip.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
