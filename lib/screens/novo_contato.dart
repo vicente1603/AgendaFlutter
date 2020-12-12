@@ -5,6 +5,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class NovoContato extends StatefulWidget {
   @override
@@ -18,6 +20,9 @@ class _NovoContatoState extends State<NovoContato> {
 
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  var maskTelefone = MaskTextInputFormatter(
+      mask: "(##) #####-####", filter: {"#": RegExp(r'[0-9]')});
 
   String imgContato;
   String imgPadrao =
@@ -107,6 +112,7 @@ class _NovoContatoState extends State<NovoContato> {
             SizedBox(height: 16.0),
             TextFormField(
                 controller: _telefoneController,
+                inputFormatters: [maskTelefone],
                 decoration: InputDecoration(hintText: "Telefone"),
                 keyboardType: TextInputType.number,
                 validator: (text) {
@@ -175,10 +181,11 @@ class _NovoContatoState extends State<NovoContato> {
                       "nome": _nomeController.text.trim(),
                       "telefone": _telefoneController.text.trim(),
                       "email": _emailController.text.trim(),
-                      "dataInclusao": DateTime.now()
+                      "dataInclusao": DateTime.now().toUtc().millisecondsSinceEpoch,
+                      "foto": imgPadrao
                     });
 
-                    Navigator.of(context).push(
+                    Navigator.of(context).pushReplacement(
                         MaterialPageRoute(builder: (context) => TelaInicio()));
                   }
                 },

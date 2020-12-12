@@ -1,47 +1,64 @@
+import 'package:agenda_flutter/models/contato_model.dart';
+import 'package:agenda_flutter/screens/detalhes_contato.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ContatoTile extends StatelessWidget {
-  final DocumentSnapshot snapshot;
+  final Contato contato;
 
-  ContatoTile(this.snapshot);
+  ContatoTile(this.contato);
 
   @override
   Widget build(BuildContext context) {
+    String converterTimestamp(int timestamp) {
+      var date = DateTime.fromMillisecondsSinceEpoch(timestamp);
+      var formattedDate = DateFormat("dd/MM/yyyy").format(date); // 16/07/2020
+      var time = formattedDate;
+
+      return time;
+    }
+
     return Card(
-      margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+      elevation: 2.0,
+      shadowColor: Colors.black,
+      margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          // SizedBox(
-          //   height: 100.0,
-          //   child: Image.network(
-          //     snapshot.data["imagem"],
-          //     fit: BoxFit.cover,
-          //   ),
-          // ),
-          Container(
-            padding: EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          ListTile(
+            onTap: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => DetalhesContato(contato)));
+            },
+            contentPadding:
+                EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+            leading: Container(
+              padding: EdgeInsets.only(right: 16.0),
+              child: CircleAvatar(
+                backgroundImage: NetworkImage(contato.foto),
+                radius: 30,
+              ),
+            ),
+            title: Column(
               children: <Widget>[
                 Text(
-                  snapshot.data["nome"],
-                  textAlign: TextAlign.start,
-                  style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.bold),
+                  contato.nome,
+                  style: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 6.0),
                 Text(
-                  snapshot.data["telefone"],
-                  textAlign: TextAlign.start,
+                  contato.telefone,
+                  style: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 6.0),
-                Text(
-                  snapshot.data["email"],
-                  textAlign: TextAlign.start,
-                )
               ],
+            ),
+            subtitle: Text(
+              "Data de inclusão: " +
+                  converterTimestamp(contato.dataInclusao),
+              textAlign: TextAlign.center,
             ),
           ),
         ],

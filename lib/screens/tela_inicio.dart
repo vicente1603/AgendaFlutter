@@ -1,7 +1,9 @@
+import 'package:agenda_flutter/models/contato_model.dart';
 import 'package:agenda_flutter/screens/novo_contato.dart';
 import 'package:agenda_flutter/tiles/contato_tile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TelaInicio extends StatelessWidget {
   @override
@@ -25,8 +27,8 @@ class TelaInicio extends StatelessWidget {
             } else {
               return ListView.builder(
                 itemCount: snapshot.data.documents.length,
-                itemBuilder: (context, index) =>
-                    ContatoTile(snapshot.data.documents[index]),
+                itemBuilder: (context, index) => ContatoTile(
+                    Contato.fromDocument(snapshot.data.documents[index])),
               );
             }
           },

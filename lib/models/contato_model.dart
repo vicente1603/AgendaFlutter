@@ -7,7 +7,7 @@ class Contato {
   String nome;
   String foto;
   String telefone;
-  DateTime dataInclusao;
+  int dataInclusao;
   String email;
   List<Endereco> enderecos;
 
