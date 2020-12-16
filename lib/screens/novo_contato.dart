@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:random_string/random_string.dart';
 
 class NovoContato extends StatefulWidget {
   @override
@@ -70,11 +71,11 @@ class _NovoContatoState extends State<NovoContato> {
                 ? Container(
                     margin: EdgeInsets.all(10),
                     child: CircleAvatar(
-                      radius: 100,
+                      radius: 50,
                       child: ClipOval(
                         child: Image.network(
                           imgContato,
-                          fit: BoxFit.fitWidth,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
@@ -173,11 +174,14 @@ class _NovoContatoState extends State<NovoContato> {
               child: RaisedButton(
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
+
+                    var id = randomAlphaNumeric(15);
+
                     Firestore.instance
                         .collection("contatos")
-                        .document()
+                        .document(id)
                         .setData({
-                      // "id": FieldPath.documentId,
+                      "id": id,
                       "nome": _nomeController.text.trim(),
                       "telefone": _telefoneController.text.trim(),
                       "email": _emailController.text.trim(),

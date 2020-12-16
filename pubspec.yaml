@@ -35,6 +35,8 @@ dependencies:
   firebase_storage: ^3.0.4
   intl: ^0.16.0
   mask_text_input_formatter: ^1.1.0
+  random_string: ^2.0.1
+  via_cep: ^1.0.6
 
 dev_dependencies:
   flutter_test:

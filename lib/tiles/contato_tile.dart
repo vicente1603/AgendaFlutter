@@ -45,6 +45,7 @@ class ContatoTile extends StatelessWidget {
               children: <Widget>[
                 Text(
                   contato.nome,
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),

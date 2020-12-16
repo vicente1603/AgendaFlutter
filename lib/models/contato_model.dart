@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'endereco_model.dart';
 
 class Contato {
-  String documentID;
+  String id;
   String nome;
   String foto;
   String telefone;
@@ -11,11 +11,11 @@ class Contato {
   String email;
   List<Endereco> enderecos;
 
-  Contato(this.documentID, this.nome, this.foto, this.telefone, this.dataInclusao,
+  Contato(this.id, this.nome, this.foto, this.telefone, this.dataInclusao,
       this.email, this.enderecos);
 
   Contato.fromDocument(DocumentSnapshot snapshot) {
-    documentID = snapshot.data["id"];
+    id = snapshot.data["id"];
     nome = snapshot.data["nome"];
     foto = snapshot.data["foto"];
     telefone = snapshot.data["telefone"];
