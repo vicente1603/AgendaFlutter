@@ -78,7 +78,7 @@ class NovoEnderecoContato extends StatelessWidget {
                         "CEP": _cepController.text.trim()
                       });
 
-                      Navigator.of(context).push(MaterialPageRoute(
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (context) => TelaInicio()));
                     },
                   ),
